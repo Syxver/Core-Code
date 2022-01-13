@@ -86,7 +86,7 @@ I born in 1998.
 		li $v0, 10
 		syscall
 ```
-### 3.1 Create a program that display your name ###
+### 3.2 Create a program that display your name ###
 ```
 .data
 
