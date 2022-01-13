@@ -36,25 +36,30 @@ I born in 1998.
 ### 2- Translate 51966 into hexadecimal and binary ###
 1. 1100101011111110
 2. CAFE
-### 3- Base on the examples and the guide of the low-level language: 3.1 Create a program to add two numbers given by the user 3.2 Create a program that display your name ###
+### 3- Base on the examples and the guide of the low-level language: ###
 
-`.data
-
+### 3.1 Create a program to add two numbers given by the user ###
+```
+.data
+#Declares variables for program
    num1: .asciiz "\nNumero 1: " 
    num2: .asciiz "\nNumero 2: "
-	result_message: .asciiz "\nEl resultado es: "
+   message: .asciiz "\nEl resultado es: "
    
-.text
+.text #Declares methods for program
 	main:
+	#Print num1
 		li $v0, 4
 		la $a0, num1
-		syscall`
+		syscall
 		
 		li $v0, 5
 		syscall
 		
+	#Stores the number put in num1
 		move $t0, $v0
 		
+	#Print num2	
 		li $v0, 4
 		la $a0, num2
 		syscall
@@ -62,14 +67,63 @@ I born in 1998.
 		li $v0, 5
 		syscall
 		
+	#Stores the number put in num1		
 		move $t1, $v0
 
+	#Sum both numbers in $t2	
 		add $t2, $t0, $t1
 
+	#Print message
 		li $v0, 4
-		la $a0 result_message
+		la $a0 message
 		syscall
 
 		li $v0, 1
 		move $a0, $t2
 		syscall
+		
+		# Exit
+		li $v0, 10
+		syscall
+```
+### 3.1 Create a program that display your name ###
+```
+.data
+
+Ask: .asciiz "What is your name? " 
+hi: .asciiz "Hi "
+nice: .asciiz  "Nice to meet you!!"
+name: .space 61 # including 
+
+.text
+
+# Print Ask
+la $a0, Ask # address of string to print
+li $v0, 4
+syscall
+
+# Input name
+la $a0, name # address to store string at
+li $a1, 61 # maximum number of chars 
+li $v0, 8
+syscall
+
+# Print hi
+la $a0, hi # address of string to print
+li $v0, 4
+syscall
+
+# Print name
+la $a0, name # address of string to print
+li $v0, 4
+syscall
+
+# Print nice
+la $a0, nice # address of string to print
+li $v0, 4
+syscall
+
+# Exit
+li $v0, 10
+syscall
+```
