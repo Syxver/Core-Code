@@ -25,3 +25,51 @@ I have 350 HNL and I want to know how much it is in USD I do the following:
 5. Show Z and say Age "Z"
 6. End
 ### 4- Why are flowcharts important to us as developers? ##
+It is important because it is a diagram that describes a computer process, system, or algorithm. They are widely used in many fields to document, study, plan, improve, and communicate often complex processes in clear, easy-to-understand diagrams.
+## ##
+## (Wednesday 12/1)
+### 1- Translate the year you where born to binary, decimal and hexadecimal ###
+I born in 1998.
+1. 11111001110
+2. 1998
+3. 7CE
+### 2- Translate 51966 into hexadecimal and binary ###
+1. 1100101011111110
+2. CAFE
+### 3- Base on the examples and the guide of the low-level language: 3.1 Create a program to add two numbers given by the user 3.2 Create a program that display your name ###
+
+`.data
+
+   num1: .asciiz "\nNumero 1: " 
+   num2: .asciiz "\nNumero 2: "
+	result_message: .asciiz "\nEl resultado es: "
+   
+.text
+	main:
+		li $v0, 4
+		la $a0, num1
+		syscall`
+		
+		li $v0, 5
+		syscall
+		
+		move $t0, $v0
+		
+		li $v0, 4
+		la $a0, num2
+		syscall
+		
+		li $v0, 5
+		syscall
+		
+		move $t1, $v0
+
+		add $t2, $t0, $t1
+
+		li $v0, 4
+		la $a0 result_message
+		syscall
+
+		li $v0, 1
+		move $a0, $t2
+		syscall
